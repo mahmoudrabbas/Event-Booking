@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"example.com/events/db"
@@ -19,24 +18,32 @@ func main() {
 }
 
 func getEvents(context *gin.Context) {
-	events := models.GetEvents()
+	events, err := models.GetEvents()
 
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": err})
+		return
+	}
 	context.JSON(http.StatusOK, gin.H{"events": events})
 
 }
 
 func createEvent(context *gin.Context) {
-	fmt.Println("D")
+	// fmt.Println("1")
 	var event models.Event
 
 	err := context.ShouldBindJSON(&event)
 	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"msg": err})
+		context.JSON(http.StatusBadRequest, gin.H{"message1": err})
 		return
 	}
 	event.Id = 1
 	event.UserId = 1
 
-	event.Save()
+	err = event.Save()
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message2": err})
+		return
+	}
 	context.JSON(http.StatusCreated, gin.H{"message": "Created Event.", "event": event})
 }
