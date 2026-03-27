@@ -72,6 +72,7 @@ func GetEvents() ([]Event, error) {
 }
 
 func GetSingleEvent(id int64) (*Event, error) {
+	fmt.Println("Gddd1")
 
 	query := `SELECT * FROM events where id = ?`
 
@@ -82,5 +83,52 @@ func GetSingleEvent(id int64) (*Event, error) {
 		return nil, err
 	}
 
+	fmt.Println("end of the get func")
 	return &event, nil
+}
+
+func (e Event) UpdateEvent() error {
+
+	fmt.Println("1")
+	query := `UPDATE events SET
+	name = ?,
+	description = ?,
+	location = ?,
+	dateTime = ?
+	WHERE id = ?`
+
+	stmt, err := db.DB.Prepare(query)
+
+	if err != nil {
+		return errors.New("Error Preparing the query")
+	}
+
+	defer stmt.Close()
+	// var event Event
+
+	_, err = stmt.Exec(e.Name, e.Description, e.Location, e.DateTime, e.Id)
+
+	if err != nil {
+		return errors.New("Error Updating the Event.")
+	}
+
+	return err
+
+}
+
+func (e *Event) DeleteEvent() error {
+	query := "DELETE FROM events where id = ?"
+
+	stmt, err := db.DB.Prepare(query)
+
+	if err != nil {
+		return errors.New("Couldnt Prepare Query.")
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(e.Id)
+
+	return err
+
 }

@@ -1,0 +1,9 @@
+PUT http://localhost:8080/events/1 
+Content-Type: application/json
+
+{
+    "name":"Test (updated)",
+    "description":"Description (updated)",
+    "location":"Still Minia",
+    "dateTime":"2026-04-02T15:30:00.000Z"
+}
