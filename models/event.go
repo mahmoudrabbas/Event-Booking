@@ -29,7 +29,7 @@ func (e *Event) Save() error {
 	}
 
 	defer stmt.Close()
-	e.UserId = 1
+
 	res, err := stmt.Exec(e.Name, e.Description, e.Location, e.DateTime, e.UserId)
 	if err != nil {
 		return errors.New("Error In Executing the query")
@@ -41,6 +41,7 @@ func (e *Event) Save() error {
 		return errors.New("Error In getting lastInsertId")
 
 	}
+
 	e.Id = id
 	return nil
 }

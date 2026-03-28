@@ -1,10 +1,10 @@
 POST http://localhost:8080/events
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haG1vdTZzNWQyQGdtYWlsLmNvbSIsImV4cCI6MTc3NDczODYyMCwidXNlcklkIjowfQ.gMcBaZcXlC25yApoyzBRSsBFpYg9vXJ1kPvayIIaizE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiYmFzMUBnbWFpbC5jb20iLCJleHAiOjE3NzQ3NDI3NjksInVzZXJJZCI6M30.QNFZML08BbplX7IN_VmDj5QN0Q98Ic2x3BFIKEQL7d0
 
 {
-  "name": "event3",
-  "description": "description 3",
-  "location": "Canada",
+  "name": "Event test",
+  "description": "description test",
+  "location": "Minya",
   "dateTime": "2026-04-02T15:30:00.000Z"
 }
