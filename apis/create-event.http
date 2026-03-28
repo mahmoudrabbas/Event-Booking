@@ -1,9 +1,10 @@
 POST http://localhost:8080/events
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haG1vdTZzNWQyQGdtYWlsLmNvbSIsImV4cCI6MTc3NDczODYyMCwidXNlcklkIjowfQ.gMcBaZcXlC25yApoyzBRSsBFpYg9vXJ1kPvayIIaizE
 
 {
-    "name":"event3",
-    "description":"description 3",
-    "location":"Canada",
-    "dateTime":"2026-04-02T15:30:00.000Z"
+  "name": "event3",
+  "description": "description 3",
+  "location": "Canada",
+  "dateTime": "2026-04-02T15:30:00.000Z"
 }
