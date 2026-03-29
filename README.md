@@ -104,7 +104,7 @@ EVENT-BOOKING/
 1. **Clone the repository**
 
     ```bash
-    git clone https://github.com/mahmoudrabbas/Event-Booking.git
+    git clone https://github.com/mahmoudrabbas/A-Go-powered-Event-Booking-REST-API
     cd Event-Booking
     ```
 
