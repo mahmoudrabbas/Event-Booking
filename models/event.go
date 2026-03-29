@@ -133,3 +133,55 @@ func (e *Event) DeleteEvent() error {
 	return err
 
 }
+
+func (e *Event) Register(userId int64) (int64, error) {
+	query := `INSERT INTO registrations(user_id, event_id) VALUES (?, ?)`
+
+	stmt, err := db.DB.Prepare(query)
+
+	if err != nil {
+		return 0, errors.New("Couldnt Prepare Query.")
+	}
+
+	defer stmt.Close()
+
+	res, err := stmt.Exec(userId, e.Id)
+
+	if err != nil {
+		return 0, errors.New("User already registered in Event ID")
+	}
+
+	id, err := res.LastInsertId()
+
+	if err != nil {
+		return 0, errors.New("Couldnt Register.")
+	}
+
+	return id, err
+
+}
+
+func (e *Event) CancelRegistration(userId int64) error {
+	query := `DELETE FROM registrations where event_id = ? AND user_id = ?`
+
+	stmt, err := db.DB.Prepare(query)
+
+	if err != nil {
+		return errors.New("Couldnt Prepare Delete Query.")
+	}
+
+	defer stmt.Close()
+	res, err := stmt.Exec(e.Id, userId)
+
+	if err != nil {
+		return err
+	}
+
+	rows, _ := res.RowsAffected()
+
+	if rows == 0 {
+		return errors.New("User is not registered in this event")
+	}
+
+	return err
+}
